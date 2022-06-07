@@ -36,11 +36,13 @@ function Login(props) {
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
 
+  const dn = new Date();
+
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>Material Admin</Typography>
+        <Typography className={classes.logotypeText}>Donkey WMS</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>
@@ -52,22 +54,24 @@ function Login(props) {
             centered
           >
             <Tab label="Login" classes={{ root: classes.tab }} />
-            <Tab label="New User" classes={{ root: classes.tab }} />
+            <Tab label="New User" disabled classes={{ root: classes.tab }} />
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
               <Typography variant="h1" className={classes.greeting}>
-                Good Morning, User
+                {dn.getHours()<12?"Good Morning, User":(
+                  dn.getHours()<18?"Good Afternoon, User":"Good Evening, User"
+                )}
               </Typography>
-              <Button size="large" className={classes.googleButton}>
-                <img src={google} alt="google" className={classes.googleIcon} />
-                &nbsp;Sign in with Google
-              </Button>
-              <div className={classes.formDividerContainer}>
-                <div className={classes.formDivider} />
-                <Typography className={classes.formDividerWord}>or</Typography>
-                <div className={classes.formDivider} />
-              </div>
+              {/*<Button size="large" className={classes.googleButton}>*/}
+              {/*  <img src={google} alt="google" className={classes.googleIcon} />*/}
+              {/*  &nbsp;Sign in with Google*/}
+              {/*</Button>*/}
+              {/*<div className={classes.formDividerContainer}>*/}
+              {/*  <div className={classes.formDivider} />*/}
+              {/*  <Typography className={classes.formDividerWord}>or</Typography>*/}
+              {/*  <div className={classes.formDivider} />*/}
+              {/*</div>*/}
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
@@ -132,6 +136,7 @@ function Login(props) {
                   color="primary"
                   size="large"
                   className={classes.forgetButton}
+                  disabled
                 >
                   Forget Password
                 </Button>

@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+axios.defaults.withCredentials=true;
 
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
@@ -54,14 +56,24 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
   setIsLoading(true);
 
   if (!!login && !!password) {
-    setTimeout(() => {
-      localStorage.setItem("id_token", "1");
-      dispatch({ type: "LOGIN_SUCCESS" });
-      setError(null);
-      setIsLoading(false);
+    axios.post(
+      "http://127.0.0.1:8000/api/auth/token/obtain/",
+      {username:login,password:password}
+    )
+      .then(response=>{
+        var {data} = response;
+        setTimeout(() => {
+          localStorage.setItem("id_token", data.access);
+          dispatch({ type: "LOGIN_SUCCESS" });
+          setError(null);
+          setIsLoading(false);
 
-      history.push("/app/dashboard");
-    }, 2000);
+          history.push("/app/dashboard");
+        }, 2000);
+      })
+      .catch(error=>{
+        console.log(error)
+      })
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
     setError(true);
