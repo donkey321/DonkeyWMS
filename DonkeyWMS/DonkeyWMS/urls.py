@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework import routers
 from User.views import *
 from apps.views import *
 from rest_framework_simplejwt.views import (
@@ -22,12 +23,19 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/token/obtain/', TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', TokenRefreshView.as_view()),
     path('api/auth/token/verify/', TokenVerifyView.as_view()),
+    path(r'docs/', include_docs_urls(title='STAR PAAS')),
     # path('api/goodscategory/list/', GoodsCategoryList.as_view()),
     path('api/test/', TestView.as_view())
 ]
+
+router = routers.SimpleRouter()
+router.register('category', GoodsCategoryView, 'category')
+router.register('unit', GoodsUnitView, 'unit')
+urlpatterns += router.urls

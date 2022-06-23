@@ -8,8 +8,15 @@ class GoodsCategory(models.Model):
 
 class GoodsUnit(models.Model):
     """产品单位"""
-    name = models.CharField(max_length=64, verbose_name='名称')
+    name = models.CharField(max_length=64, verbose_name='名称', unique=True)
     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name='备注')
+
+# class Warehouse(models.Model):
+#     """仓库"""
+#     name = models.CharField(max_length=64, verbose_name='仓库', unique=True)
+#     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name='备注')
+#     manager = models.ForeignKey('User.CustomUser', on_delete=models.CASCADE, related_name='warehouses')
+#     phone = models.CharField(max_length=256)
 
 class Goods(models.Model):
     """产品"""

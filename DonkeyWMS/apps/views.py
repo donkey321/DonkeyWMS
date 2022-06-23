@@ -1,21 +1,17 @@
-from django.shortcuts import render
-from rest_framework import views
-from .models import GoodsCategory
-from .serializers import GoodsCategorySerializer
-from django.http import JsonResponse
-# Create your views here.
+from rest_framework.viewsets import ModelViewSet
+from apps.serializers import GoodsCategorySerializers, GoodsUnitSerializers
+from apps.models import GoodsCategory,GoodsUnit
+from rest_framework import permissions
+from rest_framework_simplejwt import authentication
 
-# class GoodsCategoryList(View):
-#     def get(self, request):
-#         gcs = GoodsCategory.objects.all()
-#         print(gcs)
-#         ser_obj = GoodsCategorySerializer(instance=gcs, many=True)
-#         print(ser_obj)
-#         return JsonResponse(ser_obj.data, status=200)
-
-class GoodsCategoryView(views.APIView):
+class GoodsCategoryView(ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [authentication.JWTTokenUserAuthentication]
+    queryset = GoodsCategory.objects.all()
+    serializer_class = GoodsCategorySerializers
 
-    def get(self, request, *args, **kwargs):
-        return Response({'txt': "Get information successfully!"})
+class GoodsUnitView(ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [authentication.JWTTokenUserAuthentication]
+    queryset = GoodsUnit.objects.all()
+    serializer_class = GoodsUnitSerializers
