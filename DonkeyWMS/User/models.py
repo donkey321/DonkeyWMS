@@ -23,6 +23,7 @@ class UserManager(BaseUserManager):
         创建普通用户
         """
         extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_staff', True)
         return self._create_user(telephone, username, password, **extra_fields)
 
     def create_superuser(self, telephone, username, password, **extra_fields):
@@ -30,6 +31,7 @@ class UserManager(BaseUserManager):
         创建超级用户
         """
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
@@ -46,6 +48,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     avatar = models.CharField(max_length=200, verbose_name='头像链接')
     date_joined = models.DateTimeField(auto_now_add=True, verbose_name='加入时间')
     is_active = models.BooleanField(default=True, verbose_name="是否可用")
+    is_staff = models.BooleanField(default=False, verbose_name="是否可以登录admin")
 
     objects = UserManager()
 
