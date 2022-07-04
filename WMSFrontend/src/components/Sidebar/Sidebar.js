@@ -6,6 +6,7 @@ import {
   FormatSize as TypographyIcon,
   FilterNone as UIElementsIcon,
   BorderAll as TableIcon,
+  Ballot as GoodsIcon,
   QuestionAnswer as SupportIcon,
   LibraryBooks as LibraryIcon,
   HelpOutline as FAQIcon,
@@ -31,19 +32,20 @@ import {
 
 const structure = [
   { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
-  {
-    id: 1,
-    label: "Typography",
-    link: "/app/typography",
-    icon: <TypographyIcon />,
-  },
-  { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
-  {
-    id: 3,
-    label: "Notifications",
-    link: "/app/notifications",
-    icon: <NotificationsIcon />,
-  },
+  // {
+  //   id: 1,
+  //   label: "Typography",
+  //   link: "/app/typography",
+  //   icon: <TypographyIcon />,
+  // },
+  { id: 2, label: "Goods", link: "/app/goods", icon: <GoodsIcon /> },
+  { id: 3, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  // {
+  //   id: 3,
+  //   label: "Notifications",
+  //   link: "/app/notifications",
+  //   icon: <NotificationsIcon />,
+  // },
   {
     id: 4,
     label: "UI Elements",
@@ -55,31 +57,31 @@ const structure = [
       { label: "Maps", link: "/app/ui/maps" },
     ],
   },
-  { id: 5, type: "divider" },
-  { id: 6, type: "title", label: "HELP" },
-  { id: 7, label: "Library", link: "", icon: <LibraryIcon /> },
-  { id: 8, label: "Support", link: "", icon: <SupportIcon /> },
-  { id: 9, label: "FAQ", link: "", icon: <FAQIcon /> },
-  { id: 10, type: "divider" },
-  { id: 11, type: "title", label: "PROJECTS" },
-  {
-    id: 12,
-    label: "My recent",
-    link: "",
-    icon: <Dot size="large" color="warning" />,
-  },
-  {
-    id: 13,
-    label: "Starred",
-    link: "",
-    icon: <Dot size="large" color="primary" />,
-  },
-  {
-    id: 14,
-    label: "Background",
-    link: "",
-    icon: <Dot size="large" color="secondary" />,
-  },
+  // { id: 5, type: "divider" },
+  // { id: 6, type: "title", label: "HELP" },
+  // { id: 7, label: "Library", link: "", icon: <LibraryIcon /> },
+  // { id: 8, label: "Support", link: "", icon: <SupportIcon /> },
+  // { id: 9, label: "FAQ", link: "", icon: <FAQIcon /> },
+  // { id: 10, type: "divider" },
+  // { id: 11, type: "title", label: "PROJECTS" },
+  // {
+  //   id: 12,
+  //   label: "My recent",
+  //   link: "",
+  //   icon: <Dot size="large" color="warning" />,
+  // },
+  // {
+  //   id: 13,
+  //   label: "Starred",
+  //   link: "",
+  //   icon: <Dot size="large" color="primary" />,
+  // },
+  // {
+  //   id: 14,
+  //   label: "Background",
+  //   link: "",
+  //   icon: <Dot size="large" color="secondary" />,
+  // },
 ];
 
 function Sidebar({ location }) {
