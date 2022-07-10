@@ -30,6 +30,8 @@ urlpatterns = [
     path('api/auth/token/obtain/', TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', TokenRefreshView.as_view()),
     path('api/auth/token/verify/', TokenVerifyView.as_view()),
+    path('api/auth/currentUser/', CurrentUserView.as_view()),
+    path('api/auth/outLogin/', UserOutLoginView.as_view()),
     path(r'docs/', include_docs_urls(title='STAR PAAS')),
     # path('api/goodscategory/list/', GoodsCategoryList.as_view()),
     path('api/test/', TestView.as_view())
