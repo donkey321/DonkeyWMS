@@ -4,25 +4,34 @@ import { request } from 'umi';
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
+  console.log('currentUser api')
+
   return request<{
     data: API.CurrentUser;
-  }>('/api/currentUser', {
+  }>('/api/auth/currentUser', {
     method: 'GET',
+    skipErrorHandler: true,
+    headers: {
+      'authorization':'Token ' + localStorage.getItem('id_token')
+    },
     ...(options || {}),
   });
 }
 
 /** 退出登录接口 POST /api/login/outLogin */
 export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/login/outLogin', {
+  return request<Record<string, any>>('/api/auth/outLogin/', {
     method: 'POST',
+    headers: {
+      'authorization':'Token ' + localStorage.getItem('id_token')
+    },
     ...(options || {}),
   });
 }
 
-/** 登录接口 POST /api/login/account */
+// /** 登录接口 POST /api/login/account */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('/api/login/account', {
+  return request<API.LoginResult>('/api/auth/token/obtain/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
