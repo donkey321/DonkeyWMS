@@ -92,3 +92,26 @@ export async function removeRule(options?: { [key: string]: any }) {
     ...(options || {}),
   });
 }
+
+/** 获取产品列表 GET /goods */
+export async function goods(
+  params: {
+    // query
+    /** 当前的页码 */
+    current?: number;
+    /** 页面的容量 */
+    pageSize?: number;
+  },
+  options?: { [key: string]: any },
+) {
+  return request<API.GoodList>('/api/goods/', {
+    method: 'GET',
+    headers: {
+      'authorization':'Token ' + localStorage.getItem('id_token')
+    },
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}

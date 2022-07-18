@@ -37,6 +37,12 @@
     ],
   },
   {
+    name: '库存管理',
+    icon: 'ShopOutlined',
+    path: '/goods',
+    component: './GoodList',
+  },
+  {
     name: 'list.table-list',
     icon: 'table',
     path: '/list',

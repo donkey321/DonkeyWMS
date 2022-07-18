@@ -38,9 +38,9 @@ urlpatterns = [
 ]
 
 router = routers.SimpleRouter()
-router.register('category', GoodsCategoryView, 'category')
-router.register('unit', GoodsUnitView, 'unit')
-router.register('warehouse', WarehouseView, 'warehouse')
-router.register('goods', GoodsView, 'goods')
-router.register('stockwater', StockWaterView, 'stockwater')
+router.register('api/category', GoodsCategoryView, 'category')
+router.register('api/unit', GoodsUnitView, 'unit')
+router.register('api/warehouse', WarehouseView, 'warehouse')
+router.register('api/goods', GoodsView, 'goods')
+router.register('api/stockwater', StockWaterView, 'stockwater')
 urlpatterns += router.urls
