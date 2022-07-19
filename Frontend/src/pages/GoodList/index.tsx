@@ -107,7 +107,7 @@ const TableList: React.FC = () => {
    * */
   const intl = useIntl();
 
-  const columns: ProColumns<API.RuleListItem>[] = [
+  const columns: ProColumns<API.GoodListItem>[] = [
     {
       title: (
         <FormattedMessage
@@ -143,8 +143,7 @@ const TableList: React.FC = () => {
         />
       ),
       dataIndex: 'category',
-      renderText: (category) =>
-        `${category.name}`,
+      renderText: (category) => `${category.name}`,
     },
     {
       title: (

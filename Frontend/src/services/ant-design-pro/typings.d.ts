@@ -101,4 +101,18 @@ declare namespace API {
     description?: string;
     type?: NoticeIconItemType;
   };
+
+  type GoodListItem = {
+    id?: string;
+    batch?: string;
+    category?: object;
+    name?: string;
+    number?: string;
+    price?: string;
+    quantity?: string;
+    remark?: string;
+    spec?: string;
+    unit?: object;
+    warehouse?: object;
+  };
 }
