@@ -63,7 +63,7 @@ export default {
   'pages.searchTable.batchDeletion': '批量删除',
   'pages.searchTable.batchApproval': '批量审批',
   'pages.goods.searchTable.title': '库存列表',
-  'pages.goods.searchTable.updateForm.nameLabel': '名称',
+  'pages.goods.searchTable.updateForm.nameLabel': '货品名称',
   'pages.goods.searchTable.updateForm.batchLabel': '批次号',
   'pages.goods.searchTable.updateForm.categoryLabel': '类别',
   'pages.goods.searchTable.updateForm.numberLabel': '编号',

@@ -116,7 +116,6 @@ const TableList: React.FC = () => {
         />
       ),
       dataIndex: 'name',
-      tip: 'The good name is the unique key',
       render: (dom, entity) => {
         return (
           <a
@@ -131,7 +130,21 @@ const TableList: React.FC = () => {
       },
     },
     {
-      title: <FormattedMessage id="pages.searchTable.titleDesc" defaultMessage="Description" />,
+      title: (
+        <FormattedMessage
+          id="pages.goods.searchTable.updateForm.numberLabel"
+          defaultMessage="编号"
+        />
+      ),
+      dataIndex: 'number',
+    },
+    {
+      title: (
+        <FormattedMessage 
+          id="pages.goods.searchTable.updateForm.batchLabel" 
+          defaultMessage="Description" 
+        />
+      ),
       dataIndex: 'batch',
       valueType: 'textarea',
     },
@@ -148,20 +161,33 @@ const TableList: React.FC = () => {
     {
       title: (
         <FormattedMessage
-          id="pages.goods.searchTable.updateForm.numberLabel"
-          defaultMessage="编号"
-        />
-      ),
-      dataIndex: 'number',
-    },
-    {
-      title: (
-        <FormattedMessage
           id="pages.goods.searchTable.updateForm.quantityLabel"
           defaultMessage="数量"
         />
       ),
-      dataIndex: 'quantity',
+      dataIndex: [],
+      renderText: (item)=>{
+        return `${item.quantity} ${item.unit.name}`
+      }
+    },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.goods.searchTable.updateForm.specLabel"
+          defaultMessage="规格"
+        />
+      ),
+      dataIndex: 'spec',
+    },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.goods.searchTable.updateForm.priceLabel"
+          defaultMessage="单价"
+        />
+      ),
+      dataIndex: 'price',
+      renderText: (price) => `${price}元`
     },
     {
       title: (
@@ -171,6 +197,16 @@ const TableList: React.FC = () => {
         />
       ),
       dataIndex: 'remark',
+    },
+    {
+      title: (
+        <FormattedMessage
+          id="pages.goods.searchTable.updateForm.warehouseLabel"
+          defaultMessage="仓库"
+        />
+      ),
+      dataIndex: 'warehouse',
+      renderText: (warehouse) => `${warehouse.name}`
     },
   ];
 
@@ -182,7 +218,7 @@ const TableList: React.FC = () => {
           defaultMessage: 'Enquiry form',
         })}
         actionRef={actionRef}
-        rowKey="key"
+        rowKey="id"
         search={false}
         toolBarRender={() => [
           <Button
