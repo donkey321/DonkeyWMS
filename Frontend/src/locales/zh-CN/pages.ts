@@ -73,4 +73,12 @@ export default {
   'pages.goods.searchTable.updateForm.specLabel': '规格',
   'pages.goods.searchTable.updateForm.unitLabel': '单位',
   'pages.goods.searchTable.updateForm.warehouseLabel': '所在仓库',
+  'pages.searchTable.addGood': '新增库存',
+  'pages.searchTable.goodName': '请输入货品名称',
+  'pages.goods.form.numberName': '请输入编号',
+  'pages.goods.form.batchName': '请输入编号',
+  'pages.goods.form.priceName': '请输入编号',
+  'pages.goods.form.quantityName': '请输入编号',
+  'pages.goods.form.specName': '请输入编号',
+  'pages.goods.form.categoryName': '请选择分类',
 };

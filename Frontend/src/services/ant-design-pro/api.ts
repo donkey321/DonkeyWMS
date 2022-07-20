@@ -115,3 +115,27 @@ export async function goods(
     ...(options || {}),
   });
 }
+
+/** 获取分类列表 GET /categorys */
+export async function categorys(
+  params: {
+    // query
+    /** 当前的页码 */
+    current?: number;
+    /** 页面的容量 */
+    pageSize?: number;
+  },
+  options?: { [key: string]: any },
+) {
+  console.log('........!!!!!!!!!!')
+  return request<API.CategoryList>('/api/categorys/', {
+    method: 'GET',
+    headers: {
+      'authorization':'Token ' + localStorage.getItem('id_token')
+    },
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}

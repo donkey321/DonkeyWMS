@@ -1,4 +1,10 @@
-import { addRule, removeRule, goods, updateRule } from '@/services/ant-design-pro/api';
+import {
+  addRule,
+  removeRule,
+  goods,
+  updateRule,
+  categorys,
+} from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
@@ -7,6 +13,7 @@ import {
   PageContainer,
   ProDescriptions,
   ProFormText,
+  ProFormSelect,
   ProFormTextArea,
   ProTable,
 } from '@ant-design/pro-components';
@@ -23,6 +30,7 @@ import UpdateForm from './components/UpdateForm';
  */
 const handleAdd = async (fields: API.RuleListItem) => {
   const hide = message.loading('正在添加');
+  console.log('fields',fields)
   try {
     await addRule({ ...fields });
     hide();
@@ -228,7 +236,7 @@ const TableList: React.FC = () => {
               handleModalVisible(true);
             }}
           >
-            <PlusOutlined /> <FormattedMessage id="pages.searchTable.new" defaultMessage="New" />
+            <PlusOutlined /> <FormattedMessage id="pages.searchTable.addGood" defaultMessage="新增库存" />
           </Button>,
         ]}
         request={goods}
@@ -280,8 +288,8 @@ const TableList: React.FC = () => {
       )}
       <ModalForm
         title={intl.formatMessage({
-          id: 'pages.searchTable.createForm.newRule',
-          defaultMessage: 'New rule',
+          id: 'pages.searchTable.addGood',
+          defaultMessage: '新增库存',
         })}
         width="400px"
         visible={createModalVisible}
@@ -303,15 +311,116 @@ const TableList: React.FC = () => {
               message: (
                 <FormattedMessage
                   id="pages.searchTable.ruleName"
-                  defaultMessage="Rule name is required"
+                  defaultMessage="请输入货品名称"
                 />
               ),
             },
           ]}
           width="md"
           name="name"
+          label="货品名称"
         />
-        <ProFormTextArea width="md" name="desc" />
+        <ProFormText 
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.goods.form.numberName"
+                  defaultMessage="请输入编号"
+                />
+              ),
+            },
+          ]}
+          width="md" 
+          name="number" 
+          label="编号" 
+        />
+        <ProFormText 
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.goods.form.batchName"
+                  defaultMessage="请输入批次号"
+                />
+              ),
+            },
+          ]}
+          width="md" 
+          name="batch" 
+          label="批次号" 
+        />
+        <ProFormText 
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.goods.form.priceName"
+                  defaultMessage="请输入价格"
+                />
+              ),
+            },
+          ]}
+          width="md" 
+          name="price" 
+          label="价格" 
+        />
+        <ProFormText 
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.goods.form.quantityName"
+                  defaultMessage="请输入数量"
+                />
+              ),
+            },
+          ]}
+          width="md" 
+          name="quantity" 
+          label="数量" 
+        />
+        <ProFormText 
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.goods.form.specName"
+                  defaultMessage="请输入规格"
+                />
+              ),
+            },
+          ]}
+          width="md" 
+          name="spec" 
+          label="规格" 
+        />
+        <ProFormSelect
+          name="category"
+          label="分类"
+          request={categorys}
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.goods.form.categoryName"
+                  defaultMessage="请输入分类"
+                />
+              ),
+            }
+          ]}
+        />
+        <ProFormText 
+          width="md" 
+          name="remark" 
+          label="备注" 
+        />
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {
