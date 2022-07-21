@@ -81,4 +81,6 @@ export default {
   'pages.goods.form.quantityName': '请输入编号',
   'pages.goods.form.specName': '请输入编号',
   'pages.goods.form.categoryName': '请选择分类',
+  'pages.goods.form.unitName': '请选择分类',
+  'pages.goods.form.warehouseName': '请选择分类',
 };

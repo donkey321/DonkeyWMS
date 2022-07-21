@@ -4,6 +4,8 @@ import {
   goods,
   updateRule,
   categorys,
+  units,
+  warehouses,
 } from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
@@ -14,7 +16,6 @@ import {
   ProDescriptions,
   ProFormText,
   ProFormSelect,
-  ProFormTextArea,
   ProTable,
 } from '@ant-design/pro-components';
 import { Button, Drawer, Input, message } from 'antd';
@@ -30,7 +31,7 @@ import UpdateForm from './components/UpdateForm';
  */
 const handleAdd = async (fields: API.RuleListItem) => {
   const hide = message.loading('正在添加');
-  console.log('fields',fields)
+  console.log('fields', fields);
   try {
     await addRule({ ...fields });
     hide();
@@ -148,9 +149,9 @@ const TableList: React.FC = () => {
     },
     {
       title: (
-        <FormattedMessage 
-          id="pages.goods.searchTable.updateForm.batchLabel" 
-          defaultMessage="Description" 
+        <FormattedMessage
+          id="pages.goods.searchTable.updateForm.batchLabel"
+          defaultMessage="Description"
         />
       ),
       dataIndex: 'batch',
@@ -174,16 +175,13 @@ const TableList: React.FC = () => {
         />
       ),
       dataIndex: [],
-      renderText: (item)=>{
-        return `${item.quantity} ${item.unit.name}`
-      }
+      renderText: (item) => {
+        return `${item.quantity} ${item.unit.name}`;
+      },
     },
     {
       title: (
-        <FormattedMessage
-          id="pages.goods.searchTable.updateForm.specLabel"
-          defaultMessage="规格"
-        />
+        <FormattedMessage id="pages.goods.searchTable.updateForm.specLabel" defaultMessage="规格" />
       ),
       dataIndex: 'spec',
     },
@@ -195,7 +193,7 @@ const TableList: React.FC = () => {
         />
       ),
       dataIndex: 'price',
-      renderText: (price) => `${price}元`
+      renderText: (price) => `${price}元`,
     },
     {
       title: (
@@ -214,7 +212,7 @@ const TableList: React.FC = () => {
         />
       ),
       dataIndex: 'warehouse',
-      renderText: (warehouse) => `${warehouse.name}`
+      renderText: (warehouse) => `${warehouse.name}`,
     },
   ];
 
@@ -236,7 +234,8 @@ const TableList: React.FC = () => {
               handleModalVisible(true);
             }}
           >
-            <PlusOutlined /> <FormattedMessage id="pages.searchTable.addGood" defaultMessage="新增库存" />
+            <PlusOutlined />{' '}
+            <FormattedMessage id="pages.searchTable.addGood" defaultMessage="新增库存" />
           </Button>,
         ]}
         request={goods}
@@ -295,6 +294,7 @@ const TableList: React.FC = () => {
         visible={createModalVisible}
         onVisibleChange={handleModalVisible}
         onFinish={async (value) => {
+          console.log('value', value);
           const success = await handleAdd(value as API.RuleListItem);
           if (success) {
             handleModalVisible(false);
@@ -309,10 +309,7 @@ const TableList: React.FC = () => {
             {
               required: true,
               message: (
-                <FormattedMessage
-                  id="pages.searchTable.ruleName"
-                  defaultMessage="请输入货品名称"
-                />
+                <FormattedMessage id="pages.searchTable.ruleName" defaultMessage="请输入货品名称" />
               ),
             },
           ]}
@@ -320,85 +317,70 @@ const TableList: React.FC = () => {
           name="name"
           label="货品名称"
         />
-        <ProFormText 
+        <ProFormText
           rules={[
             {
               required: true,
               message: (
-                <FormattedMessage
-                  id="pages.goods.form.numberName"
-                  defaultMessage="请输入编号"
-                />
+                <FormattedMessage id="pages.goods.form.numberName" defaultMessage="请输入编号" />
               ),
             },
           ]}
-          width="md" 
-          name="number" 
-          label="编号" 
+          width="md"
+          name="number"
+          label="编号"
         />
-        <ProFormText 
+        <ProFormText
           rules={[
             {
               required: true,
               message: (
-                <FormattedMessage
-                  id="pages.goods.form.batchName"
-                  defaultMessage="请输入批次号"
-                />
+                <FormattedMessage id="pages.goods.form.batchName" defaultMessage="请输入批次号" />
               ),
             },
           ]}
-          width="md" 
-          name="batch" 
-          label="批次号" 
+          width="md"
+          name="batch"
+          label="批次号"
         />
-        <ProFormText 
+        <ProFormText
           rules={[
             {
               required: true,
               message: (
-                <FormattedMessage
-                  id="pages.goods.form.priceName"
-                  defaultMessage="请输入价格"
-                />
+                <FormattedMessage id="pages.goods.form.priceName" defaultMessage="请输入价格" />
               ),
             },
           ]}
-          width="md" 
-          name="price" 
-          label="价格" 
+          width="md"
+          name="price"
+          label="价格"
         />
-        <ProFormText 
+        <ProFormText
           rules={[
             {
               required: true,
               message: (
-                <FormattedMessage
-                  id="pages.goods.form.quantityName"
-                  defaultMessage="请输入数量"
-                />
+                <FormattedMessage id="pages.goods.form.quantityName" defaultMessage="请输入数量" />
               ),
             },
           ]}
-          width="md" 
-          name="quantity" 
-          label="数量" 
+          width="md"
+          name="quantity"
+          label="数量"
         />
-        <ProFormText 
+        <ProFormText
           rules={[
             {
               required: true,
               message: (
-                <FormattedMessage
-                  id="pages.goods.form.specName"
-                  defaultMessage="请输入规格"
-                />
+                <FormattedMessage id="pages.goods.form.specName" defaultMessage="请输入规格" />
               ),
             },
           ]}
-          width="md" 
-          name="spec" 
-          label="规格" 
+          width="md"
+          name="spec"
+          label="规格"
         />
         <ProFormSelect
           name="category"
@@ -408,19 +390,38 @@ const TableList: React.FC = () => {
             {
               required: true,
               message: (
-                <FormattedMessage
-                  id="pages.goods.form.categoryName"
-                  defaultMessage="请输入分类"
-                />
+                <FormattedMessage id="pages.goods.form.categoryName" defaultMessage="请选择分类" />
               ),
-            }
+            },
           ]}
         />
-        <ProFormText 
-          width="md" 
-          name="remark" 
-          label="备注" 
+        <ProFormSelect
+          name="unit"
+          label="单位"
+          request={units}
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage id="pages.goods.form.unitName" defaultMessage="请选择单位" />
+              ),
+            },
+          ]}
         />
+        <ProFormSelect
+          name="warehouse"
+          label="单位"
+          request={warehouses}
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage id="pages.goods.form.warehouseName" defaultMessage="请选择仓库" />
+              ),
+            },
+          ]}
+        />
+        <ProFormText width="md" name="remark" label="备注" />
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {

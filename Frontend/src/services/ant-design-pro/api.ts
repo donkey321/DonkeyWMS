@@ -4,7 +4,7 @@ import { request } from 'umi';
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
-  console.log('currentUser api')
+  console.log('currentUser api');
 
   return request<{
     data: API.CurrentUser;
@@ -12,7 +12,7 @@ export async function currentUser(options?: { [key: string]: any }) {
     method: 'GET',
     skipErrorHandler: true,
     headers: {
-      'authorization':'Token ' + localStorage.getItem('id_token')
+      authorization: 'Token ' + localStorage.getItem('id_token'),
     },
     ...(options || {}),
   });
@@ -23,7 +23,7 @@ export async function outLogin(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/auth/outLogin/', {
     method: 'POST',
     headers: {
-      'authorization':'Token ' + localStorage.getItem('id_token')
+      authorization: 'Token ' + localStorage.getItem('id_token'),
     },
     ...(options || {}),
   });
@@ -107,7 +107,7 @@ export async function goods(
   return request<API.GoodList>('/api/goods/', {
     method: 'GET',
     headers: {
-      'authorization':'Token ' + localStorage.getItem('id_token')
+      authorization: 'Token ' + localStorage.getItem('id_token'),
     },
     params: {
       ...params,
@@ -117,25 +117,49 @@ export async function goods(
 }
 
 /** 获取分类列表 GET /categorys */
-export async function categorys(
-  params: {
-    // query
-    /** 当前的页码 */
-    current?: number;
-    /** 页面的容量 */
-    pageSize?: number;
-  },
-  options?: { [key: string]: any },
-) {
-  console.log('........!!!!!!!!!!')
-  return request<API.CategoryList>('/api/categorys/', {
+export async function categorys() {
+  return request<API.CategoryList>('/api/category/', {
     method: 'GET',
     headers: {
-      'authorization':'Token ' + localStorage.getItem('id_token')
+      authorization: 'Token ' + localStorage.getItem('id_token'),
     },
-    params: {
-      ...params,
+  }).then((resp) => {
+    let data = [];
+    resp.forEach((item) => {
+      data.push({ value: item.id, label: item.name });
+    });
+    return data;
+  });
+}
+
+/** 获取单位列表 GET /units */
+export async function units() {
+  return request<API.UnitList>('/api/unit/', {
+    method: 'GET',
+    headers: {
+      authorization: 'Token ' + localStorage.getItem('id_token'),
     },
-    ...(options || {}),
+  }).then((resp) => {
+    let data = [];
+    resp.forEach((item) => {
+      data.push({ value: item.id, label: item.name });
+    });
+    return data;
+  });
+}
+
+/** 获取分类列表 GET /categorys */
+export async function warehouses() {
+  return request<API.WarehouseList>('/api/warehouse/', {
+    method: 'GET',
+    headers: {
+      authorization: 'Token ' + localStorage.getItem('id_token'),
+    },
+  }).then((resp) => {
+    let data = [];
+    resp.forEach((item) => {
+      data.push({ value: item.id, label: item.name });
+    });
+    return data;
   });
 }

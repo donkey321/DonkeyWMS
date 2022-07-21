@@ -115,4 +115,8 @@ declare namespace API {
     unit?: object;
     warehouse?: object;
   };
+
+  type GoodList = {};
+
+  type CategoryList = {};
 }
