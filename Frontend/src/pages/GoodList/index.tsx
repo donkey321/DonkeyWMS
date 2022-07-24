@@ -8,12 +8,18 @@ import {
   warehouses,
 } from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
+import {
+  ActionType,
+  ProColumns,
+  ProDescriptionsItemProps,
+  ProFormTextArea,
+} from '@ant-design/pro-components';
 import {
   FooterToolbar,
   ModalForm,
   PageContainer,
   ProDescriptions,
+  ProForm,
   ProFormText,
   ProFormSelect,
   ProTable,
@@ -290,7 +296,7 @@ const TableList: React.FC = () => {
           id: 'pages.searchTable.addGood',
           defaultMessage: '新增库存',
         })}
-        width="400px"
+        // width="400px"
         visible={createModalVisible}
         onVisibleChange={handleModalVisible}
         onFinish={async (value) => {
@@ -304,124 +310,145 @@ const TableList: React.FC = () => {
           }
         }}
       >
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.searchTable.ruleName" defaultMessage="请输入货品名称" />
-              ),
-            },
-          ]}
-          width="md"
-          name="name"
-          label="货品名称"
-        />
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.goods.form.numberName" defaultMessage="请输入编号" />
-              ),
-            },
-          ]}
-          width="md"
-          name="number"
-          label="编号"
-        />
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.goods.form.batchName" defaultMessage="请输入批次号" />
-              ),
-            },
-          ]}
-          width="md"
-          name="batch"
-          label="批次号"
-        />
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.goods.form.priceName" defaultMessage="请输入价格" />
-              ),
-            },
-          ]}
-          width="md"
-          name="price"
-          label="价格"
-        />
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.goods.form.quantityName" defaultMessage="请输入数量" />
-              ),
-            },
-          ]}
-          width="md"
-          name="quantity"
-          label="数量"
-        />
-        <ProFormText
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.goods.form.specName" defaultMessage="请输入规格" />
-              ),
-            },
-          ]}
-          width="md"
-          name="spec"
-          label="规格"
-        />
-        <ProFormSelect
-          name="category"
-          label="分类"
-          request={categorys}
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.goods.form.categoryName" defaultMessage="请选择分类" />
-              ),
-            },
-          ]}
-        />
-        <ProFormSelect
-          name="unit"
-          label="单位"
-          request={units}
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.goods.form.unitName" defaultMessage="请选择单位" />
-              ),
-            },
-          ]}
-        />
-        <ProFormSelect
-          name="warehouse"
-          label="单位"
-          request={warehouses}
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage id="pages.goods.form.warehouseName" defaultMessage="请选择仓库" />
-              ),
-            },
-          ]}
-        />
-        <ProFormText width="md" name="remark" label="备注" />
+        <ProForm.Group>
+          <ProFormText
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage
+                    id="pages.searchTable.ruleName"
+                    defaultMessage="请输入货品名称"
+                  />
+                ),
+              },
+            ]}
+            width="sm"
+            name="name"
+            label="货品名称"
+          />
+          <ProFormText
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage id="pages.goods.form.numberName" defaultMessage="请输入编号" />
+                ),
+              },
+            ]}
+            width="sm"
+            name="number"
+            label="编号"
+          />
+          <ProFormText
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage id="pages.goods.form.batchName" defaultMessage="请输入批次号" />
+                ),
+              },
+            ]}
+            width="sm"
+            name="batch"
+            label="批次号"
+          />
+        </ProForm.Group>
+        <ProForm.Group>
+          <ProFormText
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage id="pages.goods.form.priceName" defaultMessage="请输入价格" />
+                ),
+              },
+            ]}
+            width="sm"
+            name="price"
+            label="价格"
+          />
+          <ProFormText
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage
+                    id="pages.goods.form.quantityName"
+                    defaultMessage="请输入数量"
+                  />
+                ),
+              },
+            ]}
+            width="sm"
+            name="quantity"
+            label="数量"
+          />
+          <ProFormSelect
+            name="unit"
+            label="单位"
+            request={units}
+            width="sm"
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage id="pages.goods.form.unitName" defaultMessage="请选择单位" />
+                ),
+              },
+            ]}
+          />
+        </ProForm.Group>
+        <ProForm.Group>
+          <ProFormText
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage id="pages.goods.form.specName" defaultMessage="请输入规格" />
+                ),
+              },
+            ]}
+            width="sm"
+            name="spec"
+            label="规格"
+          />
+          <ProFormSelect
+            name="category"
+            label="分类"
+            request={categorys}
+            width="sm"
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage
+                    id="pages.goods.form.categoryName"
+                    defaultMessage="请选择分类"
+                  />
+                ),
+              },
+            ]}
+          />
+          <ProFormSelect
+            name="warehouse"
+            label="仓库"
+            request={warehouses}
+            width="sm"
+            rules={[
+              {
+                required: true,
+                message: (
+                  <FormattedMessage
+                    id="pages.goods.form.warehouseName"
+                    defaultMessage="请选择仓库"
+                  />
+                ),
+              },
+            ]}
+          />
+        </ProForm.Group>
+        <ProFormTextArea width="md" name="remark" label="备注" />
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {
