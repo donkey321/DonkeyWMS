@@ -163,3 +163,28 @@ export async function warehouses() {
     return data;
   });
 }
+
+/** 新建库存 POST /api/good */
+export async function addGood(options?: { [key: string]: any }) {
+  console.log('options', options);
+  return request<API.GoodListItem>('/api/goods/', {
+    method: 'POST',
+    headers: {
+      authorization: 'Token ' + localStorage.getItem('id_token'),
+    },
+    data: options,
+    ...(options || {}),
+  });
+}
+
+// /** 登录接口 POST /api/login/account */
+// export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
+//   return request<API.LoginResult>('/api/auth/token/obtain/', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     data: body,
+//     ...(options || {}),
+//   });
+// }

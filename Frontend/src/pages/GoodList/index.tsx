@@ -1,5 +1,5 @@
 import {
-  addRule,
+  addGood,
   removeRule,
   goods,
   updateRule,
@@ -37,11 +37,10 @@ import UpdateForm from './components/UpdateForm';
  */
 const handleAdd = async (fields: API.RuleListItem) => {
   const hide = message.loading('正在添加');
-  console.log('fields', fields);
   try {
-    await addRule({ ...fields });
+    await addGood({ ...fields });
     hide();
-    message.success('Added successfully');
+    message.success('添加成功');
     return true;
   } catch (error) {
     hide();
@@ -300,7 +299,6 @@ const TableList: React.FC = () => {
         visible={createModalVisible}
         onVisibleChange={handleModalVisible}
         onFinish={async (value) => {
-          console.log('value', value);
           const success = await handleAdd(value as API.RuleListItem);
           if (success) {
             handleModalVisible(false);
