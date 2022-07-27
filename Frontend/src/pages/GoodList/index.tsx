@@ -10,6 +10,7 @@ import {
 import { PlusOutlined } from '@ant-design/icons';
 import {
   ActionType,
+  ColumnsState,
   ProColumns,
   ProDescriptionsItemProps,
   ProFormTextArea,
@@ -219,8 +220,33 @@ const TableList: React.FC = () => {
       dataIndex: 'warehouse',
       renderText: (warehouse) => `${warehouse.name}`,
     },
+    {
+      title: <FormattedMessage id="pages.searchTable.titleOption" defaultMessage="Operating" />,
+      dataIndex: 'option',
+      valueType: 'option',
+      render: (_, record) => [
+        <a
+          key="config"
+          onClick={() => {
+            handleUpdateModalVisible(true);
+            setCurrentRow(record);
+          }}
+        >
+          <FormattedMessage id="pages.searchTable.config" defaultMessage="Configuration" />
+        </a>,
+      ],
+    },
   ];
-
+  const [columnsStateMap, setColumsStateMap] = useState<Record<string, ColumnsState>>({
+    spec: {
+      show: false,
+      order: 5,
+    },
+    remark: {
+      show: false,
+      order: 7,
+    },
+  });
   return (
     <PageContainer>
       <ProTable<API.RuleListItem, API.PageParams>
@@ -245,6 +271,10 @@ const TableList: React.FC = () => {
         ]}
         request={goods}
         columns={columns}
+        columnsState={{
+          value: columnsStateMap,
+          onChange: setColumsStateMap,
+        }}
         rowSelection={{
           onChange: (_, selectedRows) => {
             setSelectedRows(selectedRows);
