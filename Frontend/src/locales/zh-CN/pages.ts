@@ -83,4 +83,7 @@ export default {
   'pages.goods.form.categoryName': '请选择分类',
   'pages.goods.form.unitName': '请选择分类',
   'pages.goods.form.warehouseName': '请选择分类',
+  'pages.searchTable.modify': '修改',
+  'pages.searchTable.chuku': '出库',
+  'pages.searchTable.ruku': '入库',
 };

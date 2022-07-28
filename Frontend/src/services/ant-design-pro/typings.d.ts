@@ -119,4 +119,18 @@ declare namespace API {
   type GoodList = {};
 
   type CategoryList = {};
+
+  type GoodListItem = {
+    id?: number;
+    name?: string;
+    number?: string;
+    batch?: string;
+    category?: object;
+    price?: string;
+    quantity?: string;
+    remark?: string;
+    spec?: string;
+    unit?: object;
+    warehouse: object;
+  };
 }

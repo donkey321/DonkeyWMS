@@ -2,7 +2,7 @@ import {
   addGood,
   removeRule,
   goods,
-  updateRule,
+  updateGood,
   categorys,
   units,
   warehouses,
@@ -56,13 +56,21 @@ const handleAdd = async (fields: API.RuleListItem) => {
  *
  * @param fields
  */
-const handleUpdate = async (fields: FormValueType) => {
-  const hide = message.loading('Configuring');
+const handleUpdate = async (fields: FormValueType, id: string) => {
+  const hide = message.loading('修改中...');
+
   try {
-    await updateRule({
+    await updateGood({
       name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+      category: fields.category,
+      batch: fields.batch,
+      number: fields.number,
+      price: fields.price,
+      remark: fields.remark,
+      spec: fields.spec,
+      unit: fields.unit,
+      warehouse: fields.warehouse,
+      id: id,
     });
     hide();
 
@@ -232,7 +240,7 @@ const TableList: React.FC = () => {
             setCurrentRow(record);
           }}
         >
-          <FormattedMessage id="pages.searchTable.config" defaultMessage="Configuration" />
+          <FormattedMessage id="pages.searchTable.modify" defaultMessage="修改" />
         </a>,
       ],
     },
@@ -325,7 +333,9 @@ const TableList: React.FC = () => {
           id: 'pages.searchTable.addGood',
           defaultMessage: '新增库存',
         })}
-        // width="400px"
+        modalProps={{
+          destroyOnClose: true,
+        }}
         visible={createModalVisible}
         onVisibleChange={handleModalVisible}
         onFinish={async (value) => {
@@ -480,7 +490,7 @@ const TableList: React.FC = () => {
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {
-          const success = await handleUpdate(value);
+          const success = await handleUpdate(value, currentRow.id);
           if (success) {
             handleUpdateModalVisible(false);
             setCurrentRow(undefined);

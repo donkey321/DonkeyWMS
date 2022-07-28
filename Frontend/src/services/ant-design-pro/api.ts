@@ -177,6 +177,17 @@ export async function addGood(options?: { [key: string]: any }) {
   });
 }
 
+/** 新建规则 PUT /api/rule */
+export async function updateGood(options?: { [key: string]: any }) {
+  return request<API.GoodListItem>(`/api/goods/${options?.id}/`, {
+    method: 'PUT',
+    headers: {
+      authorization: 'Token ' + localStorage.getItem('id_token'),
+    },
+    data: options,
+    ...(options || {}),
+  });
+}
 // /** 登录接口 POST /api/login/account */
 // export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
 //   return request<API.LoginResult>('/api/auth/token/obtain/', {
