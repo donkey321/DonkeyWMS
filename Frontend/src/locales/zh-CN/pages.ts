@@ -4,9 +4,9 @@ export default {
   'pages.login.accountLogin.errorMessage': '错误的用户名和密码(admin/ant.design)',
   'pages.login.failure': '登录失败，请重试！',
   'pages.login.success': '登录成功！',
-  'pages.login.username.placeholder': '用户名: admin or user',
+  'pages.login.username.placeholder': '用户名: admin',
   'pages.login.username.required': '用户名是必填项！',
-  'pages.login.password.placeholder': '密码: ant.design',
+  'pages.login.password.placeholder': '密码: admin',
   'pages.login.password.required': '密码是必填项！',
   'pages.login.phoneLogin.tab': '手机号登录',
   'pages.login.phoneLogin.errorMessage': '验证码错误',
@@ -86,4 +86,6 @@ export default {
   'pages.searchTable.modify': '修改',
   'pages.searchTable.chuku': '出库',
   'pages.searchTable.ruku': '入库',
+  'pages.layouts.userLayout.lanhai.title': 'Blue Sea WMS——蓝海荣威库存管理系统',
+  'pages.welcome.lanhai.alertMessage': '蓝海荣威库存管理系统尚未完全开发完毕，部分功能暂时缺少',
 };

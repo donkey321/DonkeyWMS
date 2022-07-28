@@ -34,8 +34,8 @@ export async function getInitialState(): Promise<{
     }
     return undefined;
   };
-  console.log(history.location.pathname)
-  console.log(loginPath)
+  console.log(history.location.pathname);
+  console.log(loginPath);
   // 如果不是登录页面，执行
   if (history.location.pathname !== loginPath) {
     const currentUser = await fetchUserInfo();
@@ -59,7 +59,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     waterMarkProps: {
       content: initialState?.currentUser?.name,
     },
-    footerRender: () => <Footer />,
+    // footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
@@ -73,10 +73,10 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
             <LinkOutlined />
             <span>OpenAPI 文档</span>
           </Link>,
-          <Link to="/~docs" key="docs">
-            <BookOutlined />
-            <span>业务组件文档</span>
-          </Link>,
+          // <Link to="/~docs" key="docs">
+          //   <BookOutlined />
+          //   <span>业务组件文档</span>
+          // </Link>,
         ]
       : [],
     menuHeaderRender: undefined,

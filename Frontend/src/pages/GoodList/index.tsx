@@ -69,6 +69,7 @@ const handleUpdate = async (fields: FormValueType, id: string) => {
       remark: fields.remark,
       spec: fields.spec,
       unit: fields.unit,
+      quantity: fields.quantity,
       warehouse: fields.warehouse,
       id: id,
     });
@@ -165,7 +166,7 @@ const TableList: React.FC = () => {
       title: (
         <FormattedMessage
           id="pages.goods.searchTable.updateForm.batchLabel"
-          defaultMessage="Description"
+          defaultMessage="批次号"
         />
       ),
       dataIndex: 'batch',

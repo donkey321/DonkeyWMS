@@ -20,10 +20,10 @@ const Welcome: React.FC = () => {
       <Card>
         <Alert
           message={intl.formatMessage({
-            id: 'pages.welcome.alertMessage',
+            id: 'pages.welcome.lanhai.alertMessage',
             defaultMessage: 'Faster and stronger heavy-duty components have been released.',
           })}
-          type="success"
+          type="warning"
           showIcon
           banner
           style={{
@@ -40,7 +40,7 @@ const Welcome: React.FC = () => {
             <FormattedMessage id="pages.welcome.link" defaultMessage="Welcome" />
           </a>
         </Typography.Text>
-        <CodePreview>yarn add @ant-design/pro-components</CodePreview>
+        {/* <CodePreview>yarn add @ant-design/pro-components</CodePreview> */}
       </Card>
     </PageContainer>
   );

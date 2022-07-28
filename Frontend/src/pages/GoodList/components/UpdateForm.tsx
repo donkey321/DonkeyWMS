@@ -26,7 +26,7 @@ export type UpdateFormProps = {
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
   const intl = useIntl();
-  console.log(props.values.id);
+
   return (
     <ModalForm
       visible={props.updateModalVisible}
